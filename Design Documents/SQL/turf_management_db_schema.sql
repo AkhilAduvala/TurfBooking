@@ -4,83 +4,83 @@ show databases;
 
 use turf_management_db;
 
+CREATE TABLE usergroup (
+    usergroup_id INT AUTO_INCREMENT PRIMARY KEY,
+    usergroup_name VARCHAR(50) NOT NULL UNIQUE
+);
+
 CREATE TABLE user (
-    userId INT AUTO_INCREMENT PRIMARY KEY,
-    userFName VARCHAR(50) NOT NULL,
-    userLName VARCHAR(50) NOT NULL,
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_fname VARCHAR(50) NOT NULL,
+    user_lname VARCHAR(50) NOT NULL,
     mobile VARCHAR(15) NOT NULL UNIQUE,
     email VARCHAR(80) NOT NULL UNIQUE,
-    userGroupId int,
-    FOREIGN KEY (userGroupId)
-        REFERENCES usergroup(userGroupId),
+    usergroup_id int,
+    FOREIGN KEY (usergroup_id)
+        REFERENCES usergroup(usergroup_id),
     password VARCHAR(60) NOT NULL,
     created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE usergroup (
-    userGroupId INT AUTO_INCREMENT PRIMARY KEY,
-    userGroupName VARCHAR(50) NOT NULL UNIQUE
-);
-
-CREATE TABLE manager (
-	managerId int,
-    FOREIGN KEY (managerId)
-        REFERENCES user (userId),
-        locationId int,
-    FOREIGN KEY (locationId)
-        REFERENCES locations (locationId)
+CREATE TABLE locations (
+    location_id INT AUTO_INCREMENT PRIMARY KEY,
+    location_name VARCHAR(50) NOT NULL UNIQUE,
+    address VARCHAR(250) NOT NULL,
+    contact_info INT NOT NULL
 );
 
 CREATE TABLE turfs (
-    turfId INT AUTO_INCREMENT PRIMARY KEY,
-    turfName VARCHAR(30) NOT NULL,
-    locationId int,
-    FOREIGN KEY (locationId)
-        REFERENCES locations (locationId),
-    sizeDetails VARCHAR(60),
+    turf_id INT AUTO_INCREMENT PRIMARY KEY,
+    turf_name VARCHAR(30) NOT NULL,
+    location_id int,
+    FOREIGN KEY (location_id)
+        REFERENCES locations (location_id),
+    size_details VARCHAR(60),
     pricing INT NOT NULL,
     availabilty ENUM('enabled', 'disabled') DEFAULT 'disabled',
     min_advance INT
 );
 
-CREATE TABLE locations (
-    locationId INT AUTO_INCREMENT PRIMARY KEY,
-    locationName VARCHAR(50) NOT NULL UNIQUE,
-    address VARCHAR(250) NOT NULL,
-    contact_info INT(15) NOT NULL
+CREATE TABLE manager (
+	manager_id int,
+    FOREIGN KEY (manager_id)
+        REFERENCES user (user_id),
+        location_id int,
+    FOREIGN KEY (location_id)
+        REFERENCES locations (location_id)
 );
 
 CREATE TABLE bookings (
-    bookingId INT AUTO_INCREMENT PRIMARY KEY,
-    userId int,
-    FOREIGN KEY (userId)
-        REFERENCES user (userId),
-	TurfId int,
-    FOREIGN KEY (TurfId)
-        REFERENCES turfs (turfId),
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id int,
+    FOREIGN KEY (user_id)
+        REFERENCES user (user_id),
+	turf_id int,
+    FOREIGN KEY (turf_id)
+        REFERENCES turfs (turf_id),
     booking_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     slot TIMESTAMP,
-    status ENUM('Confirmed', 'Pending', 'Cancelled') DEFAULT 'Pending'
+    current_status ENUM('Confirmed', 'Pending', 'Cancelled') DEFAULT 'Pending'
 );
 
 CREATE TABLE payments (
-    paymentId varchar(50) PRIMARY KEY,
-    bookingId int,
-    FOREIGN KEY (bookingId)
-        REFERENCES bookings (bookingId),
-    amountPaid INT,
-    amountDue INT,
-    status ENUM('Completed', 'Pending', 'Failed') DEFAULT 'Pending'
+    payment_id varchar(50) PRIMARY KEY,
+    booking_id int,
+    FOREIGN KEY (booking_id)
+        REFERENCES bookings (booking_id),
+    amount_paid INT,
+    amount_due INT,
+    current_status ENUM('Completed', 'Pending', 'Failed') DEFAULT 'Pending'
 );
 
 CREATE TABLE notifications (
-    notificationId INT AUTO_INCREMENT PRIMARY KEY,
-    userId int,
-    FOREIGN KEY (userId)
-        REFERENCES user (userId),
-	bookingId int,
-    FOREIGN KEY (bookingId)
-        REFERENCES bookings (bookingId),
-    type ENUM('sms', 'WhatsApp', 'Email') DEFAULT 'Whatsapp',
-    status ENUM('Sent', 'Failed') DEFAULT 'failed'
+    notification_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id int,
+    FOREIGN KEY (user_id)
+        REFERENCES user (user_id),
+	booking_id int,
+    FOREIGN KEY (booking_id)
+        REFERENCES bookings (booking_id),
+    notification_type ENUM('sms', 'WhatsApp', 'Email') DEFAULT 'Whatsapp',
+    current_status ENUM('Sent', 'Failed') DEFAULT 'failed'
 );

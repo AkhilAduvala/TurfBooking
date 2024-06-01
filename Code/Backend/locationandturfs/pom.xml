@@ -13,7 +13,13 @@
   <description>This module takes care of locations and turfs</description>
   
   <dependencies>
-       <!-- Add specific dependencies for this microservice -->
+  		<!--add common module as dependency to get all the common dependencies-->
+  		<dependency>
+  			<groupId>com.thestreet.common</groupId>
+  			<artifactId>common</artifactId>
+  			<version>${project.version}</version>
+  		</dependency>
+       	<!-- Add specific dependencies for this microservice -->
   </dependencies>
 
   <build>
