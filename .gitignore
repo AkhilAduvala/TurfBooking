@@ -32,6 +32,6 @@
 
 # Ignore STS-specific files (metadata, caches, etc.)
 /.apt_generated/
-/.factorypath
+*.factorypath
 /.springBeans
 /.sts4-cache/
