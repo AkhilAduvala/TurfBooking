@@ -1,5 +1,5 @@
 # Ignore target directory
-/target/
+**/target/
 
 # Ignore IDE specific files (Eclipse/STS)
 .classpath
