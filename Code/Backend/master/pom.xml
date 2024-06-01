@@ -13,8 +13,8 @@
   	<module>../usermanagement</module>
   	<module>../booking</module>
   	<module>../payment</module>
-  	<module>../notification</module>
-  	<module>../locationandturf</module>
+  	<module>../notifications</module>
+  	<module>../locationandturfs</module>
   	<module>../admin</module>
   	<module>../manager</module>
   </modules>
@@ -36,6 +36,7 @@
   		<plugin>
   			<groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>2.6.4</version>
   		</plugin>
   	</plugins>
   </build>
