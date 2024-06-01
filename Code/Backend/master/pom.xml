@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.thestreet.tbms</groupId>
+  <artifactId>master</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>master</name>
+  <description>This is the master module of the multi module "The Street Turf Booking and Management System" maven project.</description>
+
+  <modules>
+  	<module>../common</module>
+  	<module>../authentication</module>
+  	<module>../usermanagement</module>
+  	<module>../booking</module>
+  	<module>../payment</module>
+  	<module>../notification</module>
+  	<module>../locationandturf</module>
+  	<module>../admin</module>
+  	<module>../manager</module>
+  </modules>
+  
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>org.springframework.boot</groupId>
+  			<artifactId>spring-boot-dependencies</artifactId>
+  			<version>2.6.4</version>
+  			<type>pom</type>
+  			<scope>import</scope>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
+  
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+  		</plugin>
+  	</plugins>
+  </build>
+  
+</project>

@@ -4,7 +4,7 @@
     <groupId>com.thestreet.tbms</groupId>
     <artifactId>master</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../master/parent-pom.xml</relativePath>
+    <relativePath>../master/pom.xml</relativePath>
   </parent>
   <groupId>com.thestreet.usermanagement</groupId>
   <artifactId>usermanagement</artifactId>
