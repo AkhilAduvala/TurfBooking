@@ -1,0 +1,37 @@
+# Ignore target directory
+/target/
+
+# Ignore IDE specific files (Eclipse/STS)
+.classpath
+.project
+.settings/
+.springBeans
+
+# Ignore IntelliJ IDEA specific files
+.idea/
+*.iml
+
+# Ignore NetBeans specific files
+/nbproject/
+
+# Ignore Maven wrapper files
+/.mvn/wrapper/maven-wrapper.jar
+
+# Ignore log files
+*.log
+
+# Ignore build output directories
+/build/
+/out/
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Ignore STS-specific files (metadata, caches, etc.)
+/.apt_generated/
+/.factorypath
+/.springBeans
+/.sts4-cache/
