@@ -26,7 +26,7 @@ CREATE TABLE locations (
     location_id INT AUTO_INCREMENT PRIMARY KEY,
     location_name VARCHAR(50) NOT NULL UNIQUE,
     address VARCHAR(250) NOT NULL,
-    contact_info INT NOT NULL
+    contact_info VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE turfs (
