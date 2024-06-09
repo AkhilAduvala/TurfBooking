@@ -10,13 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 /**
  * @author akhil
+ *
+ *This is a model representation of location table
  *
  */
 
 @Entity
 @Table(name = "locations")
+@Data
 public class Location {
 	
 	@Id

@@ -1,0 +1,13 @@
+#port on which the spring boot application runs
+server:
+  port: 8080
+
+#database configuration
+spring:
+  application:
+    name: LocationAndTurfs
+    
+  datasource:
+    url: jdbc:mysql://localhost:3306/turf_management_db
+    username: user_tbms
+    password: Project001!
