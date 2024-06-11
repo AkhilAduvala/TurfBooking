@@ -11,3 +11,7 @@ spring:
     url: jdbc:mysql://localhost:3306/turf_management_db
     username: user_tbms
     password: Project001!
+    
+jwt:
+  secret: 7CE57184DF35F827267375D458497
+  expiration: 3600000

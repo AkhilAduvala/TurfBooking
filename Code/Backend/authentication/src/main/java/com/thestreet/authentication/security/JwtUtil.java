@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -31,6 +33,8 @@ public class JwtUtil {
 	@Value("${jwt.expiration}")
 	private long jwtExpirationInMs;
 	
+	private static final Logger logger = LogManager.getLogger(JwtUtil.class);
+	
 	/**
 	 * Retrieve the username from the JWT token
 	 * 
@@ -39,6 +43,7 @@ public class JwtUtil {
 	 * 
 	 */
 	public String extractUsername(String token) {
+		logger.info("inside extractUsername");
 		return extractClaim(token, Claims::getSubject);
 	}
 	
@@ -50,6 +55,7 @@ public class JwtUtil {
 	 * 
 	 */
 	public Date extractExpiration(String token) {
+		logger.info("inside extractExpiration");
 		return extractClaim(token, Claims::getExpiration);
 	}
 	
@@ -63,6 +69,7 @@ public class JwtUtil {
      */
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
+        logger.info("inside extractClaim");
         return claimsResolver.apply(claims);
     }
     
@@ -73,6 +80,7 @@ public class JwtUtil {
      * @return the claims
      */
     private Claims extractAllClaims(String token) {
+    	logger.info("inside extractAllClaims");
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
     }
 
@@ -83,6 +91,7 @@ public class JwtUtil {
      * @return true if the token has expired, false otherwise
      */
     private Boolean isTokenExpired(String token) {
+    	logger.info("inside isTokenExpired");
         return extractExpiration(token).before(new Date());
     }
     
@@ -94,6 +103,7 @@ public class JwtUtil {
      */
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
+        logger.info("inside generateToken");
         return createToken(claims, userDetails.getUsername());
     }
 
@@ -105,6 +115,7 @@ public class JwtUtil {
      * @return the JWT token
      */
     private String createToken(Map<String, Object> claims, String subject) {
+    	logger.info("inside createToken");
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
@@ -123,6 +134,7 @@ public class JwtUtil {
      */
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
+        logger.info("inside validateToken");
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }

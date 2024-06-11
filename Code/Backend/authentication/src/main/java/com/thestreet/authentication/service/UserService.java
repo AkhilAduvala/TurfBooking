@@ -3,6 +3,8 @@
  */
 package com.thestreet.authentication.service;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,8 +33,11 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	public User registerNewUSer(String pasword, String email, String mobile,
+	private static final Logger logger = LogManager.getLogger(UserService.class);
+	
+	public User registerNewUser(String pasword, String email, String mobile,
 			String Fname, String Lname, int groupId) {
+		logger.info("Entering registerNewUser in service");
 		User user = new User();
 		
 		// encoding the password before saving to the database
@@ -46,8 +51,9 @@ public class UserService {
 		//fetch and set user groupId
 		UserGroup userGroup = userGroupRepository.findById(groupId)
 				.orElseThrow(() -> new RuntimeException("User group" + groupId +"not found : " ));
-		user.setUserGroup(userGroup);
-		
+		user.setUsergroup(userGroup);
+		logger.info("Exiting the registerNewUser after saving the user details");
+
 		return userRepository.save(user);
 		
 	}
