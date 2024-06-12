@@ -35,13 +35,13 @@ public class UserService {
 	
 	private static final Logger logger = LogManager.getLogger(UserService.class);
 	
-	public User registerNewUser(String pasword, String email, String mobile,
+	public User registerNewUser(String password, String email, String mobile,
 			String Fname, String Lname, int groupId) {
 		logger.info("Entering registerNewUser in service");
 		User user = new User();
 		
 		// encoding the password before saving to the database
-		user.setPassword(passwordEncoder.encode(pasword));
+		user.setPassword(passwordEncoder.encode(password));
 		
 		user.setEmail(email);
 		user.setFname(Fname);

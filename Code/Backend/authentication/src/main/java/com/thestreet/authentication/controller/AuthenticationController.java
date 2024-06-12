@@ -2,6 +2,8 @@ package com.thestreet.authentication.controller;
 
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,9 +44,12 @@ public class AuthenticationController {
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
 	
+	private static final Logger logger = LogManager.getLogger(AuthenticationController.class);
+	
 	@PostMapping("/login")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody Map<String, String> request) 
 			throws Exception{
+		logger.info("Entering the login user in authentication controller");
 		String identifier = request.get("identifier");
 		String password = request.get("password");
 		try {
@@ -62,6 +67,8 @@ public class AuthenticationController {
 	
 	 @PostMapping("/register")
 	    public ResponseEntity<?> registerUser(@RequestBody User user) {
+		 	System.out.println("recieved the register call");
+		 	logger.info("Entering the register user in authentication controller");
 	        User newUser = userService.registerNewUser(
 	            user.getPassword(), 
 	            user.getEmail(), 

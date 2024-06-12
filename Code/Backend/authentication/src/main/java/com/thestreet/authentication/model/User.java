@@ -10,6 +10,9 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenerationTime;
+
 /**
  * @author akhil
  * 
@@ -45,6 +48,7 @@ public class User {
 	@Column(name ="password")
 	private String password;
 	
+	@CreationTimestamp
 	@Column(name = "created_on")
 	private Date createdOn;
 	
