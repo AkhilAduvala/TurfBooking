@@ -20,11 +20,10 @@
     </dependency>
     <!-- Other dependencies specific to tbmsmain if needed -->
     <dependency>
-	    <groupId>mysql</groupId>
-	    <artifactId>mysql-connector-java</artifactId>
-	    <version>8.0.32</version>
-	</dependency>
-    
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.32</version>
+    </dependency>
   </dependencies>
   
   <build>
