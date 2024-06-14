@@ -1,3 +1,7 @@
+#Turf Booking and Management System
+
+This project is the frontend for the turf booking and management system
+
 # Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.
