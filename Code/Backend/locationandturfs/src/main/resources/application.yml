@@ -1,6 +1,6 @@
 #port on which the spring boot application runs
 server:
-  port: 8080
+  port: 8082
 
 #database configuration
 spring:

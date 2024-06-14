@@ -72,6 +72,14 @@
                     <target>17</target>
                 </configuration>
             </plugin>
+            <plugin>
+		        <groupId>org.springframework.boot</groupId>
+		        <artifactId>spring-boot-maven-plugin</artifactId>
+		        <version>2.6.4</version>
+		        <configuration>
+		          <mainClass>com.thestreet.authentication.main.AuthenticationApplication</mainClass> <!--  main class -->
+		        </configuration>
+		    </plugin>
         </plugins>
     </build>
 </project>
